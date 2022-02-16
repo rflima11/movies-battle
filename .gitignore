@@ -21,6 +21,7 @@ target/
 /mvnw
 /mvnw.cmd
 .mvn/
+/data
 
 ### NetBeans ###
 /nbproject/private/

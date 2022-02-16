@@ -1,0 +1,71 @@
+openapi: 3.0.2
+info:
+  title: movie-battle
+  version: 1.0.0
+  description: API REST criada para teste técnico da escola Let's Code.
+  contact:
+    name: Rodolfo Ferreira de Lima
+    url: 'https://www.linkedin.com/in/rodolfo-ferreira-lima/'
+    email: rodolfo.lima.ferreira11@gmail.com
+paths:
+  /auth: {}
+components:
+  schemas:
+    User:
+      description: Objeto que representa um usuário no jogo.
+      required:
+        - senha
+        - usuario
+        - nome
+      type: object
+      properties:
+        nome:
+          description: Nome do usuário.
+          type: string
+        senha:
+          description: Representa a senha no jogo.
+          type: string
+        usuario:
+          description: Nome de usuário no jogo.
+          type: string
+      example:
+        nome: Rodolfo Ferreira de Lima
+        usuario: rflima
+        senha: letscode123
+    Rodada:
+      title: Root Type for Rodada
+      description: Objeto que representa uma rodada no jogo.
+      type: object
+      properties:
+        message:
+          description: Mensagem do sistema a cada rodada.
+          type: string
+        movies:
+          description: Filmes que representam as opções nesta rodada.
+          type: array
+          items:
+            $ref: '#/components/schemas/MovieOption'
+      example:
+        message: >-
+          Rodolfo deve escolher entre os dois filmes, qual deles você acha que tem a maior
+          pontuação? Filme 1 ou Filme 2?
+        movies:
+          -
+            id: 20
+            title: O Pesadelo 3
+          -
+            id: 16
+            title: Refém de uma vida
+    MovieOption:
+      title: Root Type for MovieOption
+      description: 'Objeto que representa uma opção de filmes para escolha em cada rodada. '
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        title:
+          type: string
+      example:
+        id: 20
+        title: O Pesadelo 3
