@@ -13,6 +13,8 @@ http:localhost:8080
 
 ## OpenAPI 3.0 Collection
 
+Para ter acesso a documentação OpenAPI 3.0 basta acessar o caminho:
+
 ```bash
 
 movie-battle
@@ -40,11 +42,6 @@ Porta padrão: **5000**
 | http://localhost:5000 | GET | /movie-battle/v1/escolher-opcao | Escolher uma opção entre filmes
 | http://localhost:5000 | GET | movie-battle/v1/encerrar  | Encerrar o jogo
 | http://localhost:5000 | GET | movie-battle/v1/ranking | Buscar o ranking dos melhores jogadores
-
-craftbeer
-|
-|docs
-|    |___craftbeer-spec
 
 ## Usuários
 
