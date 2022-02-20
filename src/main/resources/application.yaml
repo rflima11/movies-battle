@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: sa
-    url: jdbc:h2:file:./data/exemplo
+    url: jdbc:h2:mem:movie-battle
     driverClassName: org.h2.Driver
     password: password
   h2:
@@ -9,10 +9,8 @@ spring:
       enabled: 'true'
       path: /h2-console
   jpa:
+    show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
-
-omdb:
-  host: 'http://www.omdbapi.com/'
-  apiKey: 'fbb8ab55'

@@ -1,9 +1,15 @@
 package br.com.letscode.moviebattle.service;
 
-import br.com.letscode.moviebattle.entities.Usuario;
+import br.com.letscode.moviebattle.entities.Jogo;
+
+import java.util.Optional;
 
 public interface JogoService {
 
-    void inicializarJogo(Usuario usuario);
+    void inicializarJogo();
+
+    Jogo findJogoByUsuario();
+
+    String finalizarJogo(Jogo jogo);
 
 }

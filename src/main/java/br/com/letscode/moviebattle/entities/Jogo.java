@@ -3,6 +3,7 @@ package br.com.letscode.moviebattle.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,19 +13,24 @@ public class Jogo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private int erros;
-    private Long score;
-    @OneToMany(mappedBy = "usuario")
-    private List<Rodada> rodadas;
+    private int erros = 0;
+    private Double score = 0d;
+    @JsonIgnore
+    @OneToMany(mappedBy = "jogo")
+    private List<Rodada> rodadas = new ArrayList<>();
     @JsonIgnore
     private boolean isFinalizado;
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    private long scoreFinal;
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public Jogo() {}
 
     public Jogo(Usuario usuario) {
         this.usuario = usuario;
@@ -35,7 +41,7 @@ public class Jogo {
         return usuario;
     }
 
-    public Long getScore() {
+    public Double getScore() {
         return score;
     }
 
@@ -51,7 +57,40 @@ public class Jogo {
         return rodadas;
     }
 
-    public void setScore(Long score) {
+    public void setScore(Double score) {
         this.score = score;
+    }
+
+    public boolean isFinalizado() {
+        return isFinalizado;
+    }
+
+    public void setRodadas(List<Rodada> rodadas) {
+        this.rodadas = rodadas;
+    }
+
+    public void setFinalizado(boolean finalizado) {
+        isFinalizado = finalizado;
+    }
+
+    public long getScoreFinal() {
+        return scoreFinal;
+    }
+
+    public void setScoreFinal(long scoreFinal) {
+        this.scoreFinal = scoreFinal;
+    }
+
+    public long calcularPontuacaoFinal() {
+        var numeroDeAcertos = getRodadas()
+                .stream()
+                .filter(Rodada::isAcerto)
+                .count();
+        var numeroTotalDeRodadas = getRodadas().stream().count();
+        if (numeroTotalDeRodadas > 0) {
+            var porcentagemDeAcerto = (numeroDeAcertos * 100) / numeroTotalDeRodadas;
+            return numeroTotalDeRodadas * porcentagemDeAcerto;
+        }
+        return 0;
     }
 }
