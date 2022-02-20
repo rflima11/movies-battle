@@ -1,12 +1,9 @@
 package br.com.letscode.moviebattle.controllers.mappers;
 
-import br.com.letscode.moviebattle.entities.Rodada;
 import br.com.letscode.moviebattle.entities.Usuario;
 import br.com.letscode.moviebattle.openapi.model.PosicaoRanking;
-import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;

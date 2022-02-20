@@ -21,10 +21,6 @@ public class ConstantesUtils {
         return "Obrigado por jogar! Seu score final foi: ".concat(String.valueOf(score));
     }
 
-    public static final String mensagemDeDerrota(long score) {
-        return "Lamento, você errou 3 vezes, seu score final foi: ".concat(String.valueOf(score));
-    }
-
     public static final String mensagemDeBoasVindas(String nome) {
         return "Olá " + nome + "! Jogo iniciado, boa sorte!";
     }
