@@ -4,7 +4,7 @@ import br.com.letscode.moviebattle.entities.Jogo;
 
 public interface JogoService {
 
-    void inicializarJogo();
+    Jogo inicializarJogo();
 
     Jogo findJogoByUsuario();
 

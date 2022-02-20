@@ -2,6 +2,7 @@ package br.com.letscode.moviebattle.service.impl;
 
 import br.com.letscode.moviebattle.entities.Jogo;
 import br.com.letscode.moviebattle.entities.Usuario;
+import br.com.letscode.moviebattle.entities.exceptions.BusinessException;
 import br.com.letscode.moviebattle.repository.JogoRepository;
 import br.com.letscode.moviebattle.service.JogoService;
 import br.com.letscode.moviebattle.utils.ConstantesUtils;
@@ -13,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,10 +44,21 @@ class JogoServiceImplTest {
 
     @Test
     void deveSucessoAoIniciarUmNovoJogo() {
+        Jogo jogo = new Jogo(user);
+        jogo.setFinalizado(true);
+        user.setJogos(Collections.singletonList(jogo));
         Mockito.when(usuarioService.getUsuario(Mockito.anyString())).thenReturn(user);
         Mockito.when(usuarioService.getUsernameUsuarioLogado()).thenReturn(NOME_USUARIO);
         jogoService.inicializarJogo();
         Mockito.verify(jogoRepository).save(Mockito.any(Jogo.class));
+    }
+
+    @Test
+    void deveLancarExcecaoQuandoIniciarUmNovoJogoComOutroEmAndamento() {
+        Mockito.when(usuarioService.getUsuario(Mockito.anyString())).thenReturn(user);
+        Mockito.when(usuarioService.getUsernameUsuarioLogado()).thenReturn(NOME_USUARIO);
+
+        assertThrows(BusinessException.class, () -> jogoService.inicializarJogo());
     }
 
     @Test

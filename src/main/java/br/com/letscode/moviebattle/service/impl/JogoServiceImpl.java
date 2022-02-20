@@ -1,6 +1,8 @@
 package br.com.letscode.moviebattle.service.impl;
 
 import br.com.letscode.moviebattle.entities.Jogo;
+import br.com.letscode.moviebattle.entities.Usuario;
+import br.com.letscode.moviebattle.entities.exceptions.BusinessException;
 import br.com.letscode.moviebattle.entities.exceptions.PartidaNaoIniciadaException;
 import br.com.letscode.moviebattle.repository.JogoRepository;
 import br.com.letscode.moviebattle.service.JogoService;
@@ -20,8 +22,12 @@ public class JogoServiceImpl implements JogoService {
     }
 
     @Override
-    public void inicializarJogo() {
-     salvarJogo(new Jogo(usuarioService.getUsuario(usuarioService.getUsernameUsuarioLogado())));
+    public Jogo inicializarJogo() {
+     var usuario = usuarioService.getUsuario(usuarioService.getUsernameUsuarioLogado());
+     if (verificarSeHaJogosEmAndamento(usuario)) {
+         throw new BusinessException("Não é possível iniciar um novo jogo com outro em andamento");
+     }
+     return salvarJogo(new Jogo(usuarioService.getUsuario(usuarioService.getUsernameUsuarioLogado())));
     }
 
     @Override
@@ -49,6 +55,15 @@ public class JogoServiceImpl implements JogoService {
 
     private Jogo salvarJogo(Jogo jogo) {
         return jogoRepository.save(jogo);
+    }
+
+    private boolean verificarSeHaJogosEmAndamento(Usuario usuario) {
+        return usuario.getJogos().stream().anyMatch(jogo -> {
+            if(jogo.isFinalizado()) {
+                return false;
+            }
+            return true;
+        });
     }
 
 

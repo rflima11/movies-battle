@@ -20,7 +20,9 @@ public class TestUtils {
     public static final String NOME_USUARIO = "rflima";
 
     public static final Usuario getUsuarioMock(String nomeUsuario) {
-        return new Usuario("Rodolfo", nomeUsuario, "123");
+        var usuario = new Usuario("Rodolfo", nomeUsuario, "123");
+        usuario.setJogos(Collections.singletonList(getJogoMock(usuario)));
+        return usuario;
     }
 
     public static final Jogo getJogoMock(Usuario usuario) {
