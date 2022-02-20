@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class JogoServiceImplTest {
 
-    static final String NOME_USUARIO = TestUtils.NOME_USUARIO;;
+    final String NOME_USUARIO = TestUtils.NOME_USUARIO;;
 
     @Mock
     JogoRepository jogoRepository;

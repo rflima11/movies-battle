@@ -21,11 +21,6 @@ public class MovieServiceImpl implements MovieService {
         this.movieData = movieData;
     }
 
-    /**
-     * @param jogo: Jogo na qual será selecionado uma nova rodada, com dois filmes aleatórios.
-     * @return: Retorna dois filmes aleatórios, sem repetição e com o rating diferente. Obs: perdão por esse método, tenho certeza que poderia
-     * ter feito melhor, mas infelizmente fiquei sem tempo.
-     */
     @Override
     public List<Movie> getTwoRandomMovies(Jogo jogo) {
         List<Movie> filmesRodadaAtual = new ArrayList<>();
@@ -45,11 +40,6 @@ public class MovieServiceImpl implements MovieService {
     }
 
 
-    /**
-     * @param filmesRodadaAtual: Filmes que serão jogados essa rodada.
-     * @param jogo: Jogo na qual será selecionado uma nova rodada, com dois filmes aleatórios.
-     * @return: Retorna true caso haja filmes repetidos que já foram jogados, tanto na primera quanto na segunda posição.
-     */
     private boolean verificarSeFilmesEstaoRepetidos(List<Movie> filmesRodadaAtual, Jogo jogo) {
         var rodadasPassadas = jogo.getRodadas();
         return rodadasPassadas.stream().anyMatch(rodada -> {

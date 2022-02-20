@@ -5,6 +5,7 @@ import br.com.letscode.moviebattle.controllers.mappers.RodadaMapper;
 import br.com.letscode.moviebattle.openapi.api.JogoApi;
 import br.com.letscode.moviebattle.openapi.model.Mensagem;
 import br.com.letscode.moviebattle.openapi.model.PosicaoRanking;
+import br.com.letscode.moviebattle.openapi.model.Rodada;
 import br.com.letscode.moviebattle.repository.RodadaRepository;
 import br.com.letscode.moviebattle.service.JogoService;
 import br.com.letscode.moviebattle.service.RodadasService;
@@ -48,16 +49,16 @@ public class JogoController implements JogoApi {
 
 
     @Override
-    public ResponseEntity<br.com.letscode.moviebattle.openapi.model.Rodada> iniciarNovaRodada() {
+    public ResponseEntity<Rodada> iniciarNovaRodada() {
         return ResponseEntity.status(HttpStatus.OK).body(rodadaMapper.map(rodadasService.inicializarRodada(usuarioService.getUsuario(usuarioService.getUsernameUsuarioLogado()))));
     }
 
     @Override
     public ResponseEntity<Mensagem> escolherOpcao(@RequestParam("opcaoFilme") Integer opcaoFilme) {
         var usernameLogado = usuarioService.getUsernameUsuarioLogado();
-        var jogada = rodadasService.jogar(opcaoFilme);
+        var resultadoJogada = rodadasService.jogar(opcaoFilme);
         var response = new Mensagem();
-        response.setMsg(jogada);
+        response.setMsg(resultadoJogada);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
@@ -71,8 +72,7 @@ public class JogoController implements JogoApi {
 
     @Override
     public ResponseEntity<List<PosicaoRanking>> getRanking() {
-        var a = rankingMapper.map(usuarioService.getRanking());
-
-        return ResponseEntity.status(HttpStatus.OK).body(a);
+        var ranking = rankingMapper.map(usuarioService.getRanking());
+        return ResponseEntity.status(HttpStatus.OK).body(ranking);
     }
 }

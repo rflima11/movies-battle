@@ -22,6 +22,15 @@ public class GlobalExceptionHandler {
     }
 
     @ResponseBody
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Mensagem illegalArgumentHandler(IllegalArgumentException e) {
+        var msg = new Mensagem();
+        msg.setMsg(e.getMessage());
+        return msg;
+    }
+
+    @ResponseBody
     @ExceptionHandler(JogoFinalizadoException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Mensagem jogoFinalizadoHandler(JogoFinalizadoException e) {

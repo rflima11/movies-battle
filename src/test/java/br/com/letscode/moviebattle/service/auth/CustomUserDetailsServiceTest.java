@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class CustomUserDetailsServiceTest {
 
-    static final String NOME_USUARIO = TestUtils.NOME_USUARIO;
+    final String NOME_USUARIO = TestUtils.NOME_USUARIO;
 
     @Mock
     UsuarioRepository usuarioRepository;

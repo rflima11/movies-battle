@@ -1,6 +1,7 @@
 package br.com.letscode.moviebattle.service.impl;
 
 import br.com.letscode.moviebattle.entities.Movie;
+import br.com.letscode.moviebattle.entities.exceptions.WebScrappingException;
 import br.com.letscode.moviebattle.repository.MovieRepository;
 import br.com.letscode.moviebattle.service.WebScrappingService;
 import org.jsoup.Jsoup;
@@ -43,9 +44,8 @@ public class ImdbWebScrapping implements WebScrappingService {
 
             return instanciarFilmes(titulos, rating, plot);
         } catch (IOException e) {
-            throw new RuntimeException("Não foi possível recuperar a lista de filmes");
+            throw new WebScrappingException("Não foi possível recuperar a lista de filmes");
         }
-
     }
 
     @Bean

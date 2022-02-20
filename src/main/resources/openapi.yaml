@@ -9,16 +9,23 @@ info:
     email: rodolfo.lima.ferreira11@gmail.com
 servers:
   -
-    url: 'http://localhost:8080'
+    url: 'http://localhost:5000/movie-battle/v1'
     description: ''
 paths:
   /jogo/iniciar-rodada:
     summary: Recurso responsável por iniciar uma nova rodada.
     description: Recurso responsável por iniciar uma nova rodada.
     get:
+      tags:
+        - jogo
       responses:
         '200':
           $ref: '#/components/responses/NovaRodadaResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+        -
+          BasicAuth: []
       operationId: iniciarNovaRodada
       summary: Inicia uma nova rodada
       description: Inicia uma nova rodada
@@ -26,9 +33,18 @@ paths:
     summary: Recurso responsável por escolher uma opção dos filmes
     description: Recurso responsável por iniciar uma nova rodada.
     get:
+      tags:
+        - jogo
       responses:
         '200':
           $ref: '#/components/responses/MensagemResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+        -
+          BasicAuth: []
       operationId: escolherOpcao
       summary: Recurso responsável por iniciar uma nova rodada.
       description: Recurso responsável por iniciar uma nova rodada.
@@ -43,9 +59,16 @@ paths:
   /jogo/encerrar:
     summary: Recurso responsável por encerrar um jogo
     get:
+      tags:
+        - jogo
       responses:
         '200':
           $ref: '#/components/responses/MensagemResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+        -
+          BasicAuth: []
       operationId: finalizar
       summary: Encerra o jogo e informa o score atual
       description: Finaliza a partida.
@@ -53,18 +76,32 @@ paths:
     summary: Recurso responsável por rankear os melhores jogadores.
     description: Recurso responsável por rankear os melhores jogadores.
     get:
+      tags:
+        - jogo
       responses:
         '200':
           $ref: '#/components/responses/ResponseRanking'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+        -
+          BasicAuth: []
       operationId: getRanking
       summary: Recurso responsável por rankear os melhores jogadores.
       description: Recurso responsável por rankear os melhores jogadores.
   /jogo/iniciar:
     summary: Recurso responsável por iniciar um novo jogo
     post:
+      tags:
+        - jogo
       responses:
         '201':
           $ref: '#/components/responses/MensagemResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+      security:
+        -
+          BasicAuth: []
       operationId: iniciarJogo
       summary: Recurso responsável por criar um novo jogo.
 components:
@@ -144,7 +181,7 @@ components:
         msg:
           type: string
       example:
-        msg: 'Parabéns, você escolheu a opção correta!'
+        msg: Mensagem sistema
     Ranking:
       title: Root Type for Ranking
       description: ''
@@ -237,3 +274,13 @@ components:
           schema:
             $ref: '#/components/schemas/Ranking'
       description: Array de posições dos melhores jogadores.
+    ErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Mensagem'
+      description: ''
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http

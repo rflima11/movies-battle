@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @ExtendWith(MockitoExtension.class)
 class MovieServiceImplTest {
 
-    static final String NOME_USUARIO = TestUtils.NOME_USUARIO;
+    final String NOME_USUARIO = TestUtils.NOME_USUARIO;
 
     @Mock
     MovieRepository movieRepository;

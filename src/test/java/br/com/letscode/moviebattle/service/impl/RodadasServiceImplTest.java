@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class RodadasServiceImplTest {
 
-    static final String NOME_USUARIO = TestUtils.NOME_USUARIO;
+    final String NOME_USUARIO = TestUtils.NOME_USUARIO;
 
     @Mock
     MovieService movieService;
