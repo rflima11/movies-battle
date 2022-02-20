@@ -68,7 +68,7 @@ class JogoServiceImplTest {
         var jogo = jogoService.findJogoByUsuario();
 
         assertNotNull(jogo);
-        assertTrue(jogo.getUsuario().getUsername().equals(NOME_USUARIO));
+        assertEquals(NOME_USUARIO, jogo.getUsuario().getUsername());
     }
 
 

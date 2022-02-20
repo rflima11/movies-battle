@@ -43,7 +43,7 @@ class MovieServiceImplTest {
 
         assertNotEquals(filmesAleatorios.get(0).getId(), filmesAleatorios.get(1).getId());
         assertNotEquals(filmesAleatorios.get(0).getRating(), filmesAleatorios.get(1).getRating());
-        assertEquals(filmesAleatorios.size(), 2);
+        assertEquals(2, filmesAleatorios.size() );
     }
 
 }

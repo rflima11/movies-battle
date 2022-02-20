@@ -43,7 +43,7 @@ public class JogoServiceImpl implements JogoService {
         jogo.setScoreFinal(scoreFinal);
         var melhorScoreUsuario = jogo.getUsuario().getMelhorScore();
         if (melhorScoreUsuario < scoreFinal) {
-            jogo.getUsuario().setMelhorScore(((Double.parseDouble(String.valueOf(scoreFinal)))));
+            jogo.getUsuario().setMelhorScore((Double.parseDouble(String.valueOf(scoreFinal))));
         }
     }
 

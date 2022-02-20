@@ -2,7 +2,7 @@ version: '3'
 services:
   todo-list:
     container_name: todolist
-    image: rflima11/movie-battle
+    image: rflima11/movie-battle:1.0
     ports:
       - 5000:5000
     expose:

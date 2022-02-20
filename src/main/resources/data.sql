@@ -1,5 +1,5 @@
 INSERT INTO USUARIO (id, melhor_score, posicao, nome, username, senha) VALUES (1, 200, 0, 'Rodolfo', 'rflima', '$2a$10$MPItEtP6RlkqXS2PnBaM3uG2sbUtGmmKDfM0M0AAaySauMTTag9DS');
-INSERT INTO USUARIO (id, melhor_score, posicao, nome, username, senha) VALUES (2, 175, 0, 'Helena', 'helena', '$2a$10$MPItEtP6RlkqXS2PnBaM3uG2sbUtGmmKDfM0M0AAaySauMTTag9DS');
+INSERT INTO USUARIO (id, melhor_score, posicao, nome, username, senha) VALUES (2, 175, 0, 'Helena', 'usuario2', '$2a$10$MPItEtP6RlkqXS2PnBaM3uG2sbUtGmmKDfM0M0AAaySauMTTag9DS');
 INSERT INTO USUARIO (id, melhor_score, posicao, nome, username, senha) VALUES (3, 150, 0, 'Fabi', 'usuario3', '$2a$10$MPItEtP6RlkqXS2PnBaM3uG2sbUtGmmKDfM0M0AAaySauMTTag9DS');
 INSERT INTO USUARIO (id, melhor_score, posicao, nome, username, senha) VALUES (4, 125, 0, 'Ricardo', 'usuario4', '$2a$10$MPItEtP6RlkqXS2PnBaM3uG2sbUtGmmKDfM0M0AAaySauMTTag9DS');
 INSERT INTO USUARIO (id, melhor_score, posicao, nome, username, senha) VALUES (5, 100, 0, 'Carlos', 'usuario5', '$2a$10$MPItEtP6RlkqXS2PnBaM3uG2sbUtGmmKDfM0M0AAaySauMTTag9DS');
