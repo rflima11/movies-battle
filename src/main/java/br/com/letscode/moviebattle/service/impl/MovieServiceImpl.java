@@ -27,10 +27,11 @@ public class MovieServiceImpl implements MovieService {
         var allMovies = movieData.findAll();
         var primeiroFilme = allMovies.get(new Random().nextInt(allMovies.size() - 1));
         var segundoFilme = allMovies.get(new Random().nextInt(allMovies.size() - 1));
-        if (allMovies.size() > 2 && !Objects.equals(primeiroFilme.getRating(), segundoFilme.getRating())) {
+        var temMesmoId = Objects.equals(primeiroFilme.getId(), segundoFilme.getId());
+        if (allMovies.size() > 2 && !Objects.equals(primeiroFilme.getRating(), segundoFilme.getRating()) && !temMesmoId) {
             filmesRodadaAtual.add(0, primeiroFilme);
             filmesRodadaAtual.add(1, segundoFilme);
-            if (!Objects.equals(filmesRodadaAtual.get(0).getId(), filmesRodadaAtual.get(1).getId()) && !verificarSeFilmesEstaoRepetidos(filmesRodadaAtual, jogo)) {
+            if (!verificarSeFilmesEstaoRepetidos(filmesRodadaAtual, jogo)) {
                 filmesRodadaAtual.get(0).setOpcao(1);
                 filmesRodadaAtual.get(1).setOpcao(2);
                 return filmesRodadaAtual;
