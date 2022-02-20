@@ -68,5 +68,5 @@ Fiz um pequeno vídeo de explicação sobre o projeto:
 https://www.youtube.com/watch?v=JyfRQYRpSeo
 ```
 
-Muito obrigado, pela oportunidade.
+Muito obrigado pela oportunidade.
 
